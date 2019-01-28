@@ -6,6 +6,33 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
 
+
+app.post("/usuario/registrar",function(req,res){
+    var nUsuario = req.body.username;
+    var nEmail = req.body.email;
+    var nContraseña = req.body.password;
+    var nContraseña2 = req.body.confirmpassword;
+
+    if(nContraseña){
+
+        var nuevoUsuario ={email: nEmail, username: nUsuario, password:nContraseña};
+
+        Usuario.create(nuevoUsuario,function(err,nuevo){
+
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.redirect("/")
+            }
+        });
+    }
+    else{
+        console.log("Las contraseñas no coinciden.");
+    }
+
+});
+
 app.get('/usuario', function(req, res) {
 
     Usuario.find({ estado: true }, 'email lat lng')
