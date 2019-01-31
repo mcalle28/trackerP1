@@ -4,7 +4,6 @@ require('../config/config');
 const express = require('express');
 const Usuario = require('../models/usuario');
 
-
 var appDir=process.cwd();
 const app = express();
 
@@ -14,7 +13,6 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.post('/login', (req, res) => {
-
 
 
     let body = req.body;
@@ -48,14 +46,13 @@ app.post('/login', (req, res) => {
                 mensaje: "Usuario o !contraseña incorrectos"
             });
         }
-        let id= usuarioDB.username;
+       let id= usuarioDB.username;
         res.render('sesion.html', {id:id});
 
     });
 
 
 });
-
 
 
 module.exports = app;
