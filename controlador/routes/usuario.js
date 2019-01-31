@@ -13,7 +13,7 @@ app.post("/usuario/registrar",function(req,res){
     var nContraseña = req.body.password;
     var nContraseña2 = req.body.confirmpassword;
 
-    if(nContraseña){
+    if(nContraseña===nContraseña2){
 
         var nuevoUsuario ={email: nEmail, username: nUsuario, password:nContraseña};
 
@@ -21,13 +21,16 @@ app.post("/usuario/registrar",function(req,res){
 
             if(err){
                 console.log(err);
+                res.write("Error al registrar usuario");
+                res.redirect("/");
             }
             else{
-                res.redirect("/")
+                res.redirect("/");
             }
         });
     }
     else{
+        res.redirect("/");
         console.log("Las contraseñas no coinciden.");
     }
 
@@ -59,33 +62,7 @@ app.get('/usuario', function(req, res) {
 
 });
 
-app.post('/usuario', function(req, res) {
 
-    let body = req.body;
-
-    let usuario = new Usuario({
-        email: body.email,
-        password: bcrypt.hashSync(body.password, 10)
-    });
-
-    usuario.save((err, usuarioDB) => {
-
-        if (err) {
-            return res.status(400).json({
-                error: true,
-                mensaje: err
-            });
-        }
-
-        res.json({
-            error: false,
-            usuario: usuarioDB
-        });
-
-    });
-
-
-});
 
 app.put('/usuario/:id', function(req, res) {
 

@@ -3,15 +3,19 @@ require('../config/config');
 
 const express = require('express');
 const Usuario = require('../models/usuario');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 
-
+var appDir=process.cwd();
 const app = express();
 
+app.use(express.static(appDir));
+app.set('views', appDir+"/vista/sesion");
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 app.post('/login', (req, res) => {
+
+
 
     let body = req.body;
     if (!body.password) {
@@ -21,7 +25,8 @@ app.post('/login', (req, res) => {
         });
     }
 
-    Usuario.findOne({ email: body.email }, (err, usuarioDB) => {
+    Usuario.findOne({ email: body.username }, (err, usuarioDB) => {
+
 
         if (err) {
             return res.status(400).json({
@@ -37,22 +42,14 @@ app.post('/login', (req, res) => {
             });
         }
 
-        if (!bcrypt.compareSync(body.password, usuarioDB.password)) {
+        if (!(body.password==usuarioDB.password)){
             return res.status(400).json({
                 error: true,
                 mensaje: "Usuario o !contraseña incorrectos"
             });
         }
-
-        let token = jwt.sign({
-            usuario: usuarioDB
-        }, process.env.SEED, { expiresIn: process.env.CADUCIDAD });
-
-        res.json({
-            error: false,
-            usuario: usuarioDB,
-            token
-        });
+        let id= usuarioDB.username;
+        res.render('sesion.html', {id:id});
 
     });
 
