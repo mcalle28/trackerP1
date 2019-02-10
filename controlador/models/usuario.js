@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
-
+//const uniqueValidator = require('mongoose-unique-validator');
+var passportLocalMongoose= require('passport-local-mongoose');
 
 let Schema = mongoose.Schema;
 
@@ -19,33 +19,19 @@ let usuarioSchema = new Schema({
     },
 
     password: {
-        type: String,
-        required: true
-    },
-    lat: {
-        type: String,
-        default: '00000'
-    },
-    lng: {
-        type: String,
-        default: '000000'
+        type: String
     },
     estado: {
         type: Boolean,
         default: true
-    }
+    },
+
+    rutas: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Ruta"
+    }]
 });
 
-usuarioSchema.methods.toJSON = function() {
-
-    let user = this;
-    let userObject = user.toObject();
-    delete userObject.password;
-
-    return userObject;
-
-}
-
-usuarioSchema.plugin(uniqueValidator, { message: '{PATH} debe de ser unico' });
+usuarioSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('Usuario', usuarioSchema);

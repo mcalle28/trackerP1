@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/nuevaruta.css">
+    <title>Nueva ruta</title>
+</head>
+
+<body>
+    <form id="sesion-form" action="sesion" method="get" role="form" style="display: block;">
+        <div class="titulo">
+            <titulo>Cree una nueva ruta</titulo>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <nombre class="input-group-text mb-5 ml-5">Nombre de la ruta</nombre>
+                </div>
+                <input type="text" aria-label="nombre" id="nombre" class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <button type="button" id="botonTracking" class="btn btn-success ml-5">Comenzar Tracking</button>
+
+        </div>
+        <div class="col-sm">
+            <button type="button" id="botonParar" class="btn btn-danger ml-5">Guardar ruta</button>
+        </div>
+        <div class="col-sm">
+            <form id="sesion-form" action="volver" method="GET" role="form" style="display: block;">
+                <button c value="run volver" class="btn btn-info ml-5">Volver</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/obtenerPuntos.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/css/nuevaruta.css">
+    <title>Bienvenido</title>
+</head>
+
+<body>
+    <form id="sesion-form" action="sesion" method="get" role="form" style="display: block;">
+        <div class="titulo">
+            <titulo> ¡Bienvenido/a
+                <%=currentUser.username%>! </titulo>
+        </div>
+    </form>
+    <div class="row">
+            <div class="col-sm-4">
+                    <div class="card ml-5">
+                            <div class="card-body">
+                              <h5 class="card-title">Aplicación de Tracking GPS</h5>
+                              <p class="card-text">Realizado por Maria Camila Calle.</p>
+                              <form id="sesion-form" action="logout" method="GET" role="form" style="display: block;">
+                                <button class="btn btn-info" type="submit" value="run logout">Cerrar sesion</button>
+                              </form>
+                            </div>
+                    </div>
+            </div>
+
+        <div class="col-sm-4">
+            <form id="sesion-form" action="sesion/nuevo" method="POST" role="form" style="display: block;">
+                <button type="submit" value="run sesion/nuevo" class="btn btn-info btn-lg btn-block mb-5 ml-5 mt-5">Nueva ruta</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4"> 
+                <form id="sesion-form" action="sesion/ver" method="POST" role="form" style="display: block;">
+                    <button type="submit"value="run sesion/ver" class="btn btn-info btn-lg btn-block mb-5 ml-5">Ver rutas</button>
+                </form>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+                <form id="sesion-form" action="sesion/compartir" method="POST" role="form" style="display: block;">
+                        <button type="submit"value="run sesion/compartir" class="btn btn-info btn-lg btn-block mb-5 ml-5">Compartir rutas</button>
+                    </form>
+        </div>
+        <div class="col-sm-4">
+            
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/obtenerPuntos.js"></script>
+</body>
+
+</html>

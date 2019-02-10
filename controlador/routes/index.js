@@ -1,9 +1,10 @@
 const express = require('express');
-const app = express();
+var router=express.Router();
 
 
-app.use(require('./usuario'));
-app.use(require('./login'));
+router.get("/", function(req,res){
+    res.render("registro.ejs");
+})
 
 
-module.exports = app;
+module.exports = router;
