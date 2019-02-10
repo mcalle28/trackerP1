@@ -1,4 +1,6 @@
 var valores=[];
+var link = $("#googleAPI").attr("src");
+$("#googleAPI").attr("src", link + config.GOOGLE_KEY);
 
 $("#botonTomar").click(function () {
 

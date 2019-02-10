@@ -19,7 +19,7 @@ const LocalStrategy = require('passport-local');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/telematica', {useCreateIndex: true,useFindAndModify:false,useNewUrlParser:true});
+mongoose.connect('mongodb://db/telematica', {useCreateIndex: true,useFindAndModify:false,useNewUrlParser:true});
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(resourcePath));
