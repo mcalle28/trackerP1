@@ -19,33 +19,46 @@
     </form>
     <div class="col-sm-8">
         <div class="btn-group">
-                <select id="select" name="option">
-                        <option>Seleccione Ruta</option>
-                        <% user.rutas.forEach(function(ruta){%>
-                        <option value="<%=ruta.nombre%>"><%=ruta.nombre%></option>
-                        <%})%>
-                    </select>
+            <select id="select" name="option">
+                <option>Seleccione Ruta</option>
+                <% user.rutas.forEach(function(ruta){%>
+                <option value="<%=ruta.nombre%>"><%=ruta.nombre%></option>
+                <%})%>
+            </select>
         </div>
 
-        <button id="botonDibujar"
-            style="width:30%;display: block;margin-left: 2;margin-right: auto; border-radius: 5px"
+        <button id="botonDibujar" style="width:30%;display: block;margin-left: 2;margin-right: auto; border-radius: 5px"
             class="btn btn-info btn-lg btn-block mt-3" data-toggle="button" aria-pressed="false" autocomplete="off">
             Mostrar Ruta</button>
-            <form id="sesion-form" action="volver" method="GET" role="form" style="display: block;">    
-            <button id="botonVolver" 
-            style="width:30%;display: block;margin-left: 2;margin-right: auto; border-radius: 5px"
-            class="btn btn-info btn-lg btn-block mt-3" type="submit" value="run volver" data-toggle="button" aria-pressed="false" autocomplete="off">
-            Volver</button>    
+
+            <div class="btn-group">
+                <select id="selectUser" class="mt-3" name="option">
+                    <option>Seleccione Usuario</option>
+                    <% users.forEach(function(usuario){%>
+                    <option value="<%=usuario.username%>"><%=usuario.username%></option>
+                    <%})%>
+                </select>
+            </div>
+    
+            <form id="sesion-form" action="compartir" method="POST" role="form" style="display: block;">
+                <button id="botonCompartir"
+                    style="width:30%;display: block;margin-left: 2;margin-right: auto; border-radius: 5px"
+                    class="btn btn-info btn-lg btn-block mt-3" data-toggle="button"
+                    aria-pressed="false" autocomplete="off">
+                    Compartir ruta</button>
             </form>
-            <button id="botonTomar" 
-            style="width:30%;display: block;margin-left: 2;margin-right: auto; border-radius: 5px"
-            class="btn btn-info btn-lg btn-block mt-3" type="submit" data-toggle="button" aria-pressed="false" autocomplete="off">
-            Tomar puntos</button>    
-            </form>
+
+        <form id="sesion-form" action="volver" method="GET" role="form" style="display: block;">
+            <button id="botonVolver"
+                style="width:30%;display: block;margin-left: 2;margin-right: auto; border-radius: 5px"
+                class="btn btn-info btn-lg btn-block mt-3" type="submit" value="run volver" data-toggle="button"
+                aria-pressed="false" autocomplete="off">
+                Volver</button>
+        </form>
         <div id="map" style="width:100%;height:400px;display: block;margin-left: auto;margin-right: auto;"></div>
     </div>
 
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
@@ -53,8 +66,8 @@
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
     <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/dibujar.js"></script>
     <script src="/js/keyconfig.js"></script>
+    <script src="/js/dibujar.js"></script>
     <script id="googleAPI" async defer src="https://maps.googleapis.com/maps/api/js?key=">
     </script>
 </body>

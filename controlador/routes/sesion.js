@@ -27,16 +27,35 @@ router.post("/sesion/nuevo",isLoggedIn,function(req,res){
 
 router.post("/sesion/ver",isLoggedIn,function(req,res){
     User.findById(req.user._id).populate("rutas").exec(function (err, user) {
+        User.find({}, function(err, users){
         if (err) {
             console.log(err);
         } else {
-            res.render("rutas/verruta.ejs", { user: user });
+            res.render("rutas/verruta.ejs", { user: user , users:users});
         }
+        })
     })
 })
 
-router.post("/sesion/compartir",isLoggedIn,function(req,res){
-        res.render("rutas/compartir.ejs"); 
+router.post("/sesion/compartir", isLoggedIn, function (req, res) {
+    User.findOne({ username: req.body.user }).populate("rutas").exec(function (err, Destino) {
+        User.findById(req.user._id).populate("rutas").exec(function (err, currentUser) {
+            var currentUserRoutes = currentUser.rutas;
+            var tRoute;
+            currentUserRoutes.forEach(ruta => {
+                
+                if (ruta.nombre === req.body.ruta && req.body.ruta != undefined) {
+
+                    tRoute = ruta;
+                }
+            })
+            if (Destino != null){
+                Destino.rutas.push(tRoute);
+                Destino.save();
+            }
+            res.redirect("/sesion/ver");
+        })
+    })
 })
 
 
@@ -45,12 +64,14 @@ router.get("/sesion/nuevo",isLoggedIn,function(req,res){
 })
 
 router.get("/sesion/ver",isLoggedIn,function(req,res){
-    User.findById(req.user._id).populate("usuarios").exec(function (err, user) {
+    User.findById(req.user._id).populate("rutas").exec(function (err, user) {
+        User.find({}, function(err, users){
         if (err) {
             console.log(err);
         } else {
-            res.render("rutas/verruta.ejs", { user: user });
+            res.render("rutas/verruta.ejs", { user: user , users:users});
         }
+        })
     })
 })
 
@@ -59,14 +80,7 @@ router.get("/sesion/volver",isLoggedIn,function(req,res){
 })
 
 router.get("/sesion/compartir",isLoggedIn,function(req,res){
-            res.render("rutas/compartir.ejs");
 })
-
-router.get('/user/amigos', async(req, res) => {
-    const userdb = await User.find()
-    res.render('user/amigo', { userdb });
-  });
-
 
 router.post("/obtenerRuta", isLoggedIn, function(req, res){
     Ruta.findOne( {nombre: req.body.option }, function(err, ruta){

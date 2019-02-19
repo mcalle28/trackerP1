@@ -2,8 +2,7 @@ var valores=[];
 var link = $("#googleAPI").attr("src");
 $("#googleAPI").attr("src", link + config.GOOGLE_KEY);
 
-$("#botonTomar").click(function () {
-
+$("#botonDibujar").click(function(e){
   var nombre = $("#select").val();
 
   var data={
@@ -18,12 +17,11 @@ $("#botonTomar").click(function () {
         valores.push({lat, lng});
         console.log(lat);
         console.log(lng);
+        initMap(valores);
       }); 
   });
-});
 
-$("#botonDibujar").click(function(e){
-  initMap(valores);
+
 });
 
 
@@ -41,8 +39,26 @@ function initMap(valores) {
       geodesic: true,
       strokeColor: '#FF4000',
       strokeOpacity: 1.0,
-      strokeWeight: 15
+      strokeWeight: 10
     });
 
     flightPath.setMap(map);
   }
+
+  $("#botonCompartir").click(function(){
+    var nombredeRuta= $("#select").val();
+    var nombredeUsuario=$("#selectUser").val();
+
+    var data={
+      user:nombredeUsuario,
+      ruta: nombredeRuta
+    }
+
+    console.log(data);
+
+    var url="/sesion/compartir";
+
+    $.post(url,data,function(data,status){
+      //$(".alert").toggleClass('show');
+    })
+  })
